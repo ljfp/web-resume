@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lautaro Javier Fernandez Pricco - Resume</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <script>
+        async function updateVisitorCount() {
+            const apiUrl = 'https://8a4dogfafj.execute-api.eu-west-3.amazonaws.com/Production/visitors';
+            console.log('Fetching from API:', apiUrl);
+            try {
+                const response = await fetch(apiUrl);
+                if (!response.ok) {
+                    throw new Error(`Network response was not ok: ${response.statusText}`);
+                }
+                const responseData = await response.json();
+                console.log('Response Data:', responseData);
+                if (responseData.body) {
+                    const data = JSON.parse(responseData.body);
+                    console.log('Parsed Data:', data);
+                    document.getElementById('visitor-count').innerText = data.count;
+                } else {
+                    console.error('No body in response data');
+                }
+            } catch (error) {
+                console.error('Error fetching visitor count:', error);
+            }
+        }
+        updateVisitorCount();
+    </script>
+    <div class="resume">
+        <header>
+            <h1>Lautaro Javier Fernandez Pricco</h1>
+            <p>London, UK | <a href="mailto:ljfp@ljfp.xyz">ljfp@ljfp.xyz</a> | +39 393 2037960</p>
+            <p><a href="https://www.linkedin.com/in/lautaro-fernandez-pricco" target="_blank" rel="noopener">LinkedIn</a> | <a href="https://github.com/ljfp" target="_blank" rel="noopener">GitHub</a></p>
+        </header>
+        <section>
+            <h2>SUMMARY</h2>
+            <p>Software engineer with 8 years of expertise in high-performance distributed systems and monitoring solutions, now transitioning into game development. Skilled in building cross-platform video game engines and contributing to open-source game projects. Proficient in C++, ECS, and Unreal Engine 5, with a strong focus on performance for both Linux and Windows. Combining a deep technical background with a passion for creating robust game engines optimized for performance and flexibility.</p>
+        </section>
+        <section>
+            <h2>PROJECTS</h2>
+            <h3>RLEngine: a video game engine for roguelikes</h3>
+            <p>August 2022 - Present | <a href="https://github.com/ljfp/RLEngine" target="_blank" rel="noopener">GitHub</a></p>
+            <ul>
+                <li>Developing a C++ video game engine designed for creating roguelike games based on the Berlin Interpretation of the genre. The engine incorporates an Entity-Component-System (ECS) architecture using Flecs, providing flexible and efficient game object management. Testing shows the engine can handle tens of thousands of entities per frame with minimal impact.</li>
+                <li>Integrated multiple technologies, including GLM for linear algebra, spdlog for logging, SDL2 for keyboard, audio, and window management, Vulkan for rendering, and Lua bindings for game scripts.</li>
+                <li>Supporting cross-platform functionality for Linux and Windows, with build times of approximately 1m33s using 6 cores/12 threads on both systems, ensuring fast and efficient development cycles across platforms.</li>
+            </ul>
+            <h3>Cscheme: a single-pass compiler with an interactive interpreter (REPL) for Scheme</h3>
+            <p>August 2024 - Present | <a href="https://github.com/ljfp/cscheme" target="_blank" rel="noopener">GitHub</a></p>
+            <ul>
+                <li>Developing a C-based single-pass compiler for Scheme (R7RS), repurposing the "clox" compiler built from the book Crafting Interpreters. This involves adapting the design for functional language support and creating an efficient compilation pipeline.</li>
+                <li>Implementing Pratt's Parsing to handle Scheme's syntax, enabling flexible parsing for expressions and control structures. The parser efficiently manages prefix and infix operations, making the compilation process streamlined.</li>
+                <li>Optimizing memory management and performance using techniques such as garbage collection and tail-call optimization, ensuring efficient handling of Scheme’s recursion and functional constructs within the constraints of a single-pass compiler.</li>
+            </ul>
+        </section>
+        <section>
+            <h2>EXPERIENCE</h2>
+            <h3>Game Server Developer (C++) - AzerothCore</h3>
+            <p>Remote (Worldwide)</p>
+            <ul>
+                <li>Contributed code to "AzerothCore", a C++ open-source MMORPG game server based on World of Warcraft v3.3.5a. Added RBAC, fixed spells, cleaned up database entries, and improved CI with GitHub Actions.</li>
+            </ul>
+            <h3>Game Client Developer (C++) - DevilutionX</h3>
+            <p>Remote (Worldwide)</p>
+            <ul>
+                <li>Contributed code for DevilutionX: a modern C++ port of Diablo and Hellfire, cross-compiled to run on multiple platforms (Windows, Linux, PS4, Xbox 360, 3DS, Switch). Fixed multiplayer TCP parser bug, added a cinematic "skip" button for the 3DS build, and refactored classes to meet BetterCodeHub standards.</li>
+            </ul>
+            <h3>Software Engineer (Infrastructure) - Medallia</h3>
+            <p>April 2020 - July 2024 | San Francisco, USA (Remote)</p>
+            <ul>
+                <li>Designed and implemented a batch REST API using Python (Flask) and Redis to create Kubernetes jobs on demand, handling the creation of ~10k jobs per day. The system tracks job progress and updates a custom database built with C++ and Boost to store results. Implemented an optimized bucket-sort algorithm to distribute load between shards of the same job, reducing execution times.</li>
+                <li>Built a web application with Flask, React, and Elasticsearch to display the results of ~1000 tests in near real-time, providing detailed logs and trace-backs for errors in failed tests.</li>
+                <li>Created a system testing framework, tailored to Medallia’s main product, featuring a domain-specific language (DSL) for writing tests. Trained peers on the DSL and best practices for writing tests within the framework.</li>
+            </ul>
+            <h3>Site Reliability Engineer (Monitoring Systems) - Netrix Global</h3>
+            <p>March 2018 - March 2020 | Buenos Aires, Argentina - Las Vegas, USA</p>
+            <ul>
+                <li>Deployed, maintained, and enhanced an open-source monitoring system written in Golang (Sensu-go) for cloud and on-premises infrastructures, processing ~1000 time-series metrics every 6 seconds and handling the respective alerts.</li>
+                <li>Developed a high-performance application in C++ to process ~1M HTTP requests per hour via a Protobuf stream, tag requests, and re-send the properly tagged requests to a time-series database (InfluxDB) for storage and analysis.</li>
+                <li>Architected a CI/CD flow for updating monitoring clients across multiple hosts and data centers, using Ansible with Python and shell scripts for configuration. GitHub Actions triggered the Ansible playbook when merging a PR to a selected branch, automating the update process and streamlining deployment.</li>
+            </ul>
+            <h3>DevOps Engineer (Automations) - Arbusta</h3>
+            <p>January 2016 - February 2018 | Buenos Aires, Argentina</p>
+            <ul>
+                <li>Developed and deployed a tracking system using Python and AWS (Boto3) to manage testing environments, customers, and applications for each release, reducing manual effort and increasing cross-team visibility.</li>
+                <li>Standardized the integration testing process by implementing Jenkins pipelines, reducing deployment times by 67% (from 4 hours to 1 hour 20 minutes) through the use of parallel pipelines and automation. Transformed a manual deployment process into an automated, documented system using Jenkinsfiles, improving project consistency.</li>
+                <li>Automated the provisioning and management of infrastructure using Docker and Terraform, creating reliable and repeatable test environments. Eliminated manual labor by developing an infrastructure-as-code approach, enhancing productivity and reproducibility.</li>
+            </ul>
+        </section>
+        <section>
+            <h2>EDUCATION</h2>
+            <p><strong>Bachelor of Mathematics (incomplete)</strong> - University of Buenos Aires • 2019</p>
+            <p>Awarded with scholarship "Becas Sadosky" for 4 years due to grades. Transitioned to full-time work as a software engineer after receiving hands-on industry experience.</p>
+        </section>
+        <section>
+            <h2>SKILLS</h2>
+            <p><strong>Languages:</strong> C++, C, Python 3, Java, Scheme, Groovy</p>
+            <p><strong>Game Development:</strong> Unreal Engine 5 (Networking, Enhanced Input, Gameplay Ability System, Blueprints), Godot, Networking, Entity-Component-System (ECS) architecture, Vulkan, Lua, GLM, spdlog</p>
+            <p><strong>Development Tools:</strong> Git, Perforce, Valgrind, MSVC, GCC, gdb, pdb, JDK Mission Control, Visual Studio 2022, CLion, Pycharm, Idea</p>
+            <p><strong>DevOps & CI/CD:</strong> Jenkins, Ansible, GitHub Actions, Terraform, Docker, Kubernetes</p>
+            <p><strong>Monitoring & Infrastructure:</strong> Sensu-go, Prometheus, InfluxDB, Amazon CloudTrail, Redis, SonarQube, Sentry</p>
+            <p><strong>Databases:</strong> PostgreSQL, MySQL, SQLite, InfluxDB, Redis</p>
+        </section>
+    </div>
+    <div id="visitor-counter">Visitors: <span id="visitor-count">0</span></div>
+</body>
+</html>
